@@ -1,0 +1,18 @@
+{
+  "author": "Octelly",
+  "cached": true,
+  "commitDate": "2026-11-14T18:09:13Z",
+  "enrichedAt": "2026-11-16T16:01:08.515495Z",
+  "identity": "Octelly/Eglantine/ci/nx2exp-ci-upgrades - 2026-11-14_18-09 (6963d05)",
+  "march": null,
+  "narHash": "sha256:0wm73dc9wylzrjh8n4xm06nagkv8s6mfpy84rczaiwx6bpspvc7l",
+  "pgo": false,
+  "ref": "ci/nx2exp-ci-upgrades",
+  "registeredAt": "2026-11-16T16:00:48.646203Z",
+  "repo": "Octelly/Eglantine",
+  "rev": "6963d0556c9a454e3c77836c4c77617a3efcabb0",
+  "run": "43624997465",
+  "storePath": "/nix/store/kvn6zxwmnparsfb2yy5h8r7z36q6pdqg-eglantine-0.1.0-rc3-6963d05",
+  "system": "x86_64-linux",
+  "workflow": "build-nix.yml"
+}

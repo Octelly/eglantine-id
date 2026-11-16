@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eglantine build identity</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem auto; max-width: 70rem; padding: 0 1rem; }
+  h1 { font-size: 1.4rem; font-weight: 600; margin-bottom: .25rem; }
+  p.note { opacity: .7; margin-top: 0; }
+  table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+  th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid rgba(128,128,128,.35); vertical-align: top; }
+  th { font-weight: 600; opacity: .8; white-space: nowrap; }
+  code { font-family: ui-monospace, monospace; font-size: .85em; }
+  .ok { color: #2e7d32; } .no { color: #c62828; } .unk { opacity: .55; }
+  tr:hover td { background: rgba(128,128,128,.08); }
+</style>
+</head>
+<body>
+<h1>Eglantine build identity</h1>
+<p class="note">{{ records|length }} registered build{% if records|length != 1 %}s{% endif %} · each entry is written once, by the CI leg that built it.</p>
+<table>
+  <thead>
+    <tr><th>Identity</th><th>System</th><th>Commit</th><th>Cached</th><th>CI run</th></tr>
+  </thead>
+  <tbody>
+  {% for r in records %}
+    <tr>
+      <td>{{ r.identity }}{% if r.pgo %} <code>(PGO)</code>{% endif %}{% if r.march %} <code>[{{ r.march }}]</code>{% endif %}</td>
+      <td>{{ r.system }}</td>
+      <td><code>{{ r.rev[:7] }}</code>{% if r.author %}<br><small>{{ r.author }}</small>{% endif %}</td>
+      <td>
+        {% if r.cached %}<span class="ok">in cache</span>
+        {% elif r.cached is none %}<span class="unk">unchecked</span>
+        {% else %}<span class="no">missing</span>{% endif %}
+      </td>
+      <td><a href="https://github.com/{{ r.repo }}/actions/runs/{{ r.run }}">{{ r.run }}</a></td>
+    </tr>
+  {% else %}
+    <tr><td colspan="5" class="unk">No builds registered yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>
